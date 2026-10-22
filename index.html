@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NOC Dashboard</title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --panel: #111827;
+        --panel-alt: #1f2937;
+        --sidebar: #0b1120;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --accent: #38bdf8;
+        --accent-strong: #0ea5e9;
+        --success: #34d399;
+        --warning: #fbbf24;
+        --danger: #f87171;
+        --border: rgba(148, 163, 184, 0.2);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .app-shell {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        background: var(--sidebar);
+        border-right: 1px solid var(--border);
+        padding: 24px 18px;
+      }
+
+      .brand {
+        margin-bottom: 28px;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: rgba(15, 23, 42, 0.8);
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      .brand span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .nav {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .nav-btn {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid transparent;
+        background: transparent;
+        color: var(--text);
+        text-align: left;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 0.96rem;
+        transition: 0.2s ease;
+      }
+
+      .nav-btn:hover,
+      .nav-btn.active {
+        background: rgba(56, 189, 248, 0.12);
+        border-color: rgba(56, 189, 248, 0.35);
+        color: #dff7ff;
+      }
+
+      .main-panel {
+        padding: 24px;
+      }
+
+      #app-content {
+        min-height: 70vh;
+      }
+
+      .module-panel {
+        background: rgba(17, 24, 39, 0.85);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 24px;
+      }
+
+      .module-panel h2 {
+        margin-top: 0;
+      }
+
+      .module-panel p {
+        color: var(--muted);
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+        margin-top: 18px;
+      }
+
+      .metric {
+        background: var(--panel-alt);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+      }
+
+      .metric strong {
+        display: block;
+        font-size: 1.5rem;
+        margin-top: 8px;
+      }
+
+      .status-pill {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        letter-spacing: 0.04em;
+      }
+
+      .status-ok {
+        background: rgba(52, 211, 153, 0.12);
+        color: var(--success);
+      }
+
+      .status-warn {
+        background: rgba(251, 191, 36, 0.12);
+        color: var(--warning);
+      }
+
+      .status-danger {
+        background: rgba(248, 113, 113, 0.12);
+        color: var(--danger);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <h1>NOC Dashboard</h1>
+          <span>Security Operations Center</span>
+        </div>
+
+        <nav class="nav" aria-label="Menú principal">
+          <button class="nav-btn active" data-module="map">Topología</button>
+          <button class="nav-btn" data-module="crypto">Criptografía</button>
+          <button class="nav-btn" data-module="logs">Logs</button>
+          <button class="nav-btn" data-module="firewall">Firewall</button>
+          <button class="nav-btn" data-module="alerts">Alertas</button>
+          <button class="nav-btn" data-module="core">Core / Datos</button>
+        </nav>
+      </aside>
+
+      <main class="main-panel">
+        <div id="app-content"></div>
+      </main>
+    </div>
+
+    <script src="modules/core/data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
