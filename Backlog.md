@@ -12,9 +12,10 @@ Cada equipo tendrá:
 
 La coordinación global se hará a través de un Scrum of Scrums diario, donde cada equipo aporta:
 
-- Qué hizo ayer
-- Qué hará hoy
-- Qué bloqueadores tiene
+* Qué hizo el equipo:
+* Qué hará hoy:
+* Qué bloqueos tiene:
+* Qué necesita de otro equipo:
 
 ---
 

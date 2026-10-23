@@ -86,7 +86,3 @@ git push origin feature/eq1-map
 - Los archivos del equipo quedan aislados en su carpeta.
 - No hay cambios no autorizados en otros módulos.
 - El PR está documentado y es revisable.
-
-## 7. Recomendación final
-
-Mantén el trabajo modular, simple y visual. En este proyecto la clave es la coordinación por equipo y la disciplina de integración incremental.
