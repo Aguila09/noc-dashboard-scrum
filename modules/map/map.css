@@ -1,49 +1,73 @@
-.module-panel {
-  background: rgba(17, 24, 39, 0.85);
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  border-radius: 16px;
-  padding: 24px;
-}
+/* ==========================================================================
+   Módulo Topología de Red (Equipo 1)
+   ========================================================================== */
 
-.module-panel h2 {
-  margin-top: 0;
-}
+.map { display: flex; flex-direction: column; gap: 16px; }
+.map-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.map-header h2 { margin: 0; }
+.map-header p { margin: 4px 0 0; color: var(--muted); font-size: 0.9rem; }
 
-.module-panel p {
-  color: #94a3b8;
+/* Filtros */
+.map-toolbar { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.map-filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.map-chip {
+  background: var(--panel-alt); color: var(--muted); border: 1px solid var(--border);
+  padding: 5px 12px; border-radius: 999px; cursor: pointer; font-size: 0.8rem; transition: 0.2s;
 }
+.map-chip:hover, .map-chip.active { background: rgba(56, 189, 248, 0.15); color: var(--accent); border-color: var(--accent); }
 
-.metrics {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 16px;
+/* Layout del Lienzo */
+.map-layout { display: grid; grid-template-columns: 1fr 240px; gap: 16px; }
+@media (max-width: 800px) { .map-layout { grid-template-columns: 1fr; } }
+.map-canvas-box {
+  position: relative; background: #090e1a; border: 1px solid var(--border);
+  border-radius: 12px; min-height: 320px; overflow: hidden;
 }
+#map-svg { width: 100%; height: 100%; display: block; }
 
-.metric {
-  background: #1f2937;
-  border: 1px solid rgba(148, 163, 184, 0.12);
-  border-radius: 12px;
-  padding: 16px;
-}
+/* Enlaces y Nodos */
+.map-link { stroke: #38bdf8; stroke-width: 2; stroke-opacity: 0.4; transition: 0.2s; }
+.map-link.active { stroke-width: 3.5; stroke-opacity: 0.95; stroke: var(--accent); }
+.map-link.dimmed { stroke-opacity: 0.08; }
 
-.metric span {
-  color: #cbd5e1;
-  font-size: 0.8rem;
-}
+.map-node { cursor: pointer; transition: opacity 0.2s; }
+.map-node:hover circle.base { filter: brightness(1.25); }
+.map-node.selected circle.base { stroke: #ffffff !important; stroke-width: 3.5; }
+.map-node.dimmed { opacity: 0.2; }
+.map-node circle.base { stroke-width: 2.5; transition: stroke 0.2s, fill 0.2s; }
+.map-node.online circle.base { fill: #064e3b; stroke: var(--success); }
+.map-node.warning circle.base { fill: #78350f; stroke: var(--warning); }
+.map-node.critical circle.base { fill: #7f1d1d; stroke: var(--danger); }
 
-.metric strong {
-  display: block;
-  margin-top: 8px;
-  font-size: 1.6rem;
-  color: #e2e8f0;
-}
+.map-node text.id { fill: #fff; font-size: 11px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
+.map-node text.name { fill: #e2e8f0; font-size: 10.5px; font-weight: 600; text-anchor: middle; }
+.map-node text.zone { fill: var(--muted); font-size: 9px; text-anchor: middle; }
 
-.status-pill {
-  display: inline-block;
-  padding: 7px 12px;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  background: rgba(52, 211, 153, 0.12);
-  color: #34d399;
+/* Leyenda y Panel de Detalle */
+.map-legend {
+  position: absolute; bottom: 8px; left: 10px; display: flex; gap: 12px;
+  font-size: 0.75rem; color: var(--muted); background: rgba(11, 17, 32, 0.85);
+  padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border);
 }
+.map-legend .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+.dot.ok { background: var(--success); }
+.dot.warn { background: var(--warning); }
+.dot.danger { background: var(--danger); }
+
+.map-details {
+  background: var(--panel-alt); border: 1px solid var(--border); border-radius: 12px;
+  padding: 16px; display: flex; flex-direction: column; gap: 10px;
+}
+.map-details h3 { margin: 0; font-size: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.node-info { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+.node-info p { margin: 6px 0; }
+.node-info strong { color: var(--text); }
+
+/* Resumen por Zonas */
+.map-zones-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
+.zone-card {
+  background: var(--panel-alt); border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px; display: flex; flex-direction: column; gap: 4px;
+}
+.zone-card span { font-size: 0.75rem; color: var(--muted); }
+.zone-card strong { font-size: 1.05rem; }
