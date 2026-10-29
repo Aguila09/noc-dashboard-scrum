@@ -5,9 +5,13 @@ function initLogsModule() {
   const throughput = document.getElementById('logs-throughput');
   const blocked = document.getElementById('logs-blocked');
 
-  if (packets) packets.textContent = new Intl.NumberFormat('es-ES').format(traffic.totalPackets || 0);
-  if (throughput) throughput.textContent = `${traffic.throughputMbps || 0} Mbps`;
-  if (blocked) blocked.textContent = String(traffic.blockedAttempts || 0);
+  const totalPackets = Number(traffic.totalPackets || 0);
+  const throughputValue = Number(traffic.throughputMbps || 0);
+  const blockedAttempts = Number(traffic.blockedAttempts || 0);
+
+  if (packets) packets.textContent = String(totalPackets);
+  if (throughput) throughput.textContent = `${throughputValue.toFixed(1)} Mbps`;
+  if (blocked) blocked.textContent = String(blockedAttempts);
 }
 
 if (document.readyState === 'loading') {
