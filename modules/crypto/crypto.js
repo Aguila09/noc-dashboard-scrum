@@ -7,6 +7,8 @@ async function sha256Hex(value) {
     .join('');
 }
 
+
+
 async function sha1Hex(value) {
   const encoder = new TextEncoder();
   const data = encoder.encode(value);
