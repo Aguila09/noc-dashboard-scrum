@@ -35,15 +35,18 @@ function initAlertsModule() {
 
   container.innerHTML = alerts
     .map((alert) => {
-      const severityClass = (alert.severity || 'baja').toLowerCase();
+      // Caso límite: si la alerta no trae severidad, se asume 'Baja' (evita mostrar "undefined")
+      const severity = alert.severity || 'Baja';
+      const severityClass = severity.toLowerCase();
       return `
         <li>
           <div class="alert-header">
-            <strong>${alert.id}</strong>
-            <span class="severity ${severityClass}">${alert.severity}</span>
+            <!-- Caso límite: valores por defecto si falta algún campo -->
+            <strong>${alert.id ?? 'Sin ID'}</strong>
+            <span class="severity ${severityClass}">${severity}</span>
           </div>
-          <div>${alert.message}</div>
-          <small>Origen: ${alert.source}</small>
+          <div>${alert.message ?? 'Sin descripción'}</div>
+          <small>Origen: ${alert.source ?? 'No especificado'}</small>
         </li>
       `;
     })
