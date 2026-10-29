@@ -137,6 +137,7 @@
       .join('');
 
     svg.innerHTML = linksHtml + nodesHtml;
+    $('map-empty').style.display = svg.querySelector('.map-node') ? 'none' : 'flex';
 
     svg.querySelectorAll('.map-node').forEach((group) => {
       group.addEventListener('click', (e) => {

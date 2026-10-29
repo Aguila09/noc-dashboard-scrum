@@ -37,7 +37,18 @@
 .map-node circle.base { stroke-width: 2.5; transition: stroke 0.2s, fill 0.2s; }
 .map-node.online circle.base { fill: #064e3b; stroke: var(--success); }
 .map-node.warning circle.base { fill: #78350f; stroke: var(--warning); }
-.map-node.critical circle.base { fill: #7f1d1d; stroke: var(--danger); }
+.map-node.critical circle.base { fill: #7f1d1d; stroke: var(--danger); animation: map-pulse 1.2s ease-in-out infinite; }
+@keyframes map-pulse {
+  0%, 100% { stroke-opacity: 1; }
+  50% { stroke-opacity: 0.35; }
+}
+
+/* Estado vacío por filtros */
+.map-empty {
+  position: absolute; inset: 0; display: none;
+  align-items: center; justify-content: center;
+  color: var(--muted); font-size: 0.85rem;
+}
 
 .map-node text.id { fill: #fff; font-size: 11px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
 .map-node text.name { fill: #e2e8f0; font-size: 10.5px; font-weight: 600; text-anchor: middle; }
