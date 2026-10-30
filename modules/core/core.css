@@ -37,3 +37,29 @@
   font-size: 1.1rem;
   color: #e2e8f0;
 }
+
+.core-grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.core-card {
+  background: rgba(15, 118, 110, 0.08);
+  border: 1px solid rgba(45, 212, 191, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.core-label {
+  display: block;
+  color: #9bd7d4;
+  font-size: 0.75rem;
+  margin-bottom: 8px;
+}
+
+.core-card strong {
+  font-size: 1.2rem;
+  color: #ecfeff;
+}
