@@ -37,3 +37,47 @@
   font-size: 1.4rem;
   color: #e2e8f0;
 }
+
+.logs-panel {
+  margin-top: 22px;
+  display: grid;
+  gap: 16px;
+}
+
+.traffic-row,
+.traffic-meter {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.traffic-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #cbd5e1;
+}
+
+.traffic-meter-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #cbd5e1;
+}
+
+.meter-track {
+  width: 100%;
+  height: 12px;
+  background: rgba(148, 163, 184, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #34d399, #fbbf24, #f87171);
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
