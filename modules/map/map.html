@@ -1,23 +1,45 @@
-<section class="module-panel">
-  <h2>Mapa de Topología de Nodos</h2>
-  <p>Vista general de la infraestructura y su estado operativo.</p>
+<section class="module-panel map">
+  <div class="map-header">
+    <div>
+      <h2>Mapa de Topología de Nodos</h2>
+      <p>Monitoreo de infraestructura de red, conectividad y estados por zona.</p>
+    </div>
+    <div id="map-overall" class="status-pill status-ok">Sistema Estable</div>
+  </div>
 
-  <div class="metrics">
-    <div class="metric">
-      <span>Dispositivos activos</span>
-      <strong id="map-active-nodes">18</strong>
+  <!-- Métricas Rápidas -->
+  <div id="map-stats" class="metrics"></div>
+
+  <!-- Barra de Filtros -->
+  <div class="map-toolbar">
+    <div class="map-filters" id="map-zone-filters" role="group" aria-label="Filtrar por zona">
+      <button type="button" class="map-chip active" data-zone="ALL">Todas las zonas</button>
     </div>
-    <div class="metric">
-      <span>Enlaces críticos</span>
-      <strong id="map-critical-links">6</strong>
-    </div>
-    <div class="metric">
-      <span>Segmentación</span>
-      <strong id="map-segmentation">4 zonas</strong>
+    <div class="map-filters" id="map-status-filters" role="group" aria-label="Filtrar por estado">
+      <button type="button" class="map-chip active" data-status="ALL">Todos</button>
+      <button type="button" class="map-chip" data-status="online">Online</button>
+      <button type="button" class="map-chip" data-status="warning">Warning</button>
+      <button type="button" class="map-chip" data-status="critical">Critical</button>
     </div>
   </div>
 
-  <div style="margin-top: 20px;">
-    <span class="status-pill status-ok">Sistema estable</span>
+  <!-- Lienzo y Panel de Detalles -->
+  <div class="map-layout">
+    <div class="map-canvas-box">
+      <svg id="map-svg" viewBox="0 0 600 360" preserveAspectRatio="xMidYMid meet"></svg>
+      <div id="map-empty" class="map-empty">No hay nodos que coincidan con los filtros seleccionados.</div>
+      <div class="map-legend">
+        <span><i class="dot ok"></i> Online</span>
+        <span><i class="dot warn"></i> Warning</span>
+        <span><i class="dot danger"></i> Critical</span>
+      </div>
+    </div>
+    <div id="map-details" class="map-details">
+      <h3>Detalle del Nodo</h3>
+      <div id="map-node-info" class="node-info">Haz clic en un nodo para ver su estado y conexiones.</div>
+    </div>
   </div>
+
+  <!-- Resumen de Estados por Zona -->
+  <div class="map-zones-summary" id="map-zones-summary"></div>
 </section>
